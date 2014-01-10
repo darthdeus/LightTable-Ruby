@@ -10,10 +10,10 @@ CodeMirror.defineMode("ruby", function(conf, parserConf) {
     },
 
     lineComment: "#",
-    fold: "indent";
+    fold: "indent"
   };
 
   return exports;
 });
 
-CodeMirror.defineMIME("text/x-ruby", ruby);
+CodeMirror.defineMIME("text/x-ruby", "ruby");
