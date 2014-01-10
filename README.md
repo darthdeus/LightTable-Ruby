@@ -6,7 +6,7 @@ This is a simple (but soon powerful) Ruby plugin for the [Light Table](http://li
 
 # Installation
 
-Make sure you have the `rcodetools` gem installed (`gem install rcodetools`) and `xmpfilter` (executable which comes with rcodetools) is available in your `$PATH`
+Make sure you have the `rcodetools` gem installed (`gem install rcodetools`) and `xmpfilter` (executable which comes with rcodetools) is available in your `$PATH`. This might mean you have to launch Light Table via the `light` command, instead of running the `.app` directly (depends on the platform).
 
 # Usage
 
