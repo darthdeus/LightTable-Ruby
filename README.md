@@ -41,3 +41,6 @@ You can run the evaluation either by invoking the behavior directly via `Ctrl-Sp
 # Shameless self promotion
 
 The initial version of this plugin was developed by the awesome ninja hackers at [sensible.io](http://sensible.io)
+
+[![Bitdeli Badge](https://d2weczhvl823v0.cloudfront.net/darthdeus/lighttable-ruby/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+
