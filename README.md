@@ -29,8 +29,11 @@ puts a
 
 **MAKE SURE YOU SAVE THE FILE FIRST, OTHERWISE THE UNSAVED CHANGES WILL GET OVERRIDEN**, because `xmpfilter` reads the contents from the actual file. (TODO - fix this)
 
-You can run the evaluation either by invoking the behavior directly via `Ctrl-Space -> Ruby: eval current buffer`, or by making a keyboard shortcut, for example
+You can run the evaluation either by invoking the behavior directly via `Ctrl-Space -> Ruby: eval current buffer`, or by making a keyboard shortcut (see below). After the eval you can clear the results using `Ruby: clear eval results`.
 
 ```
-"ctrl-l" [:eval-ruby-buffer]
+:editor.ruby {
+  "ctrl-l" [:ruby.eval-buffer]
+  "ctrl-shift-l" [:ruby.clear-eval-results]
+}
 ```

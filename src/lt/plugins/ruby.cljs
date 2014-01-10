@@ -32,17 +32,37 @@
                    #js {:line 0 :ch 0}
                    #js {:line (.lineCount (editor/->cm-ed (pool/last-active))) :ch 0})))
 
+(defn current-file-name [] (-> @(pool/last-active) :info :path))
+
+(defn strip-xmpfilter-result [line]
+  "Removes results of applying xmpfilter (see below for examples)"
+  (clojure.string/replace (clojure.string/replace line #"# =>.+$" "# =>") #"^# >>.+$" ""))
+
+(= "1 + 1 # =>" (strip-xmpfilter-result "1 + 1 # => 2"))
+(= "" (strip-xmpfilter-result "# >> 2"))
+
 
 (defn replace-ruby-contents [err stdout stderr]
   "Replaces content of the current buffer from an output of an external process"
   (replace-buffer (str stdout stderr)))
 
-(defn current-file-name [] (-> @(pool/last-active) :info :path))
+(defn ruby-clear-eval-results []
+  "Clears results from previous eval"
+  (replace-buffer (clojure.string/join "\n"
+                                       (map strip-xmpfilter-result
+                                            (clojure.string/split (current-buffer-content) #"\n")))))
 
-(defn eval-ruby-buffer []
+(defn ruby-eval-buffer []
+  "Evaluates the current buffer using xmpfilter"
   ((.log js/console "eval-ruby-buffer")
    (.exec (js/require "child_process") (str "xmpfilter " (current-file-name)) replace-ruby-contents)))
 
-(cmd/command {:command :eval-ruby-buffer
+;; TODO - add command for inserting # => on the current line
+
+(cmd/command {:command :ruby.eval-buffer
               :desc "Ruby: eval current buffer"
-              :exec eval-ruby-buffer})
+              :exec ruby-eval-buffer})
+
+(cmd/command {:command :ruby.clear-eval-results
+              :desc "Ruby: clear eval results"
+              :exec ruby-clear-eval-results})

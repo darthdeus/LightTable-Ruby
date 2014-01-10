@@ -35,16 +35,28 @@ lt.plugins.ruby.replace_buffer = (function replace_buffer(string){var temp__4092
 }
 });
 
-lt.plugins.ruby.replace_ruby_contents = (function replace_ruby_contents(err,stdout,stderr){return lt.plugins.ruby.replace_buffer.call(null,[cljs.core.str(stdout),cljs.core.str(stderr)].join(''));
-});
-
 lt.plugins.ruby.current_file_name = (function current_file_name(){return new cljs.core.Keyword(null,"path","path",1017337751).cljs$core$IFn$_invoke$arity$1(new cljs.core.Keyword(null,"info","info",1017141280).cljs$core$IFn$_invoke$arity$1(cljs.core.deref.call(null,lt.objs.editor.pool.last_active.call(null))));
 });
 
-lt.plugins.ruby.eval_ruby_buffer = (function eval_ruby_buffer(){return console.log("eval-ruby-buffer").call(null,require("child_process").exec([cljs.core.str("xmpfilter "),cljs.core.str(lt.plugins.ruby.current_file_name.call(null))].join(''),lt.plugins.ruby.replace_ruby_contents));
+lt.plugins.ruby.strip_xmpfilter_result = (function strip_xmpfilter_result(line){return clojure.string.replace.call(null,clojure.string.replace.call(null,line,/# =>.+$/,"# =>"),/^# >>.+$/,"");
 });
 
-lt.objs.command.command.call(null,new cljs.core.PersistentArrayMap(null, 3, [new cljs.core.Keyword(null,"command","command",1964298941),new cljs.core.Keyword(null,"eval-ruby-buffer","eval-ruby-buffer",4261784404),new cljs.core.Keyword(null,"desc","desc",1016984067),"Ruby: eval current buffer",new cljs.core.Keyword(null,"exec","exec",1017031683),lt.plugins.ruby.eval_ruby_buffer], null));
+cljs.core._EQ_.call(null,"1 + 1 # =>",lt.plugins.ruby.strip_xmpfilter_result.call(null,"1 + 1 # => 2"));
+
+cljs.core._EQ_.call(null,"",lt.plugins.ruby.strip_xmpfilter_result.call(null,"# >> 2"));
+
+lt.plugins.ruby.replace_ruby_contents = (function replace_ruby_contents(err,stdout,stderr){return lt.plugins.ruby.replace_buffer.call(null,[cljs.core.str(stdout),cljs.core.str(stderr)].join(''));
+});
+
+lt.plugins.ruby.ruby_clear_eval_results = (function ruby_clear_eval_results(){return lt.plugins.ruby.replace_buffer.call(null,clojure.string.join.call(null,"\n",cljs.core.map.call(null,lt.plugins.ruby.strip_xmpfilter_result,clojure.string.split.call(null,lt.plugins.ruby.current_buffer_content.call(null),/\n/))));
+});
+
+lt.plugins.ruby.ruby_eval_buffer = (function ruby_eval_buffer(){return console.log("eval-ruby-buffer").call(null,require("child_process").exec([cljs.core.str("xmpfilter "),cljs.core.str(lt.plugins.ruby.current_file_name.call(null))].join(''),lt.plugins.ruby.replace_ruby_contents));
+});
+
+lt.objs.command.command.call(null,new cljs.core.PersistentArrayMap(null, 3, [new cljs.core.Keyword(null,"command","command",1964298941),new cljs.core.Keyword(null,"ruby.eval-buffer","ruby.eval-buffer",2831282159),new cljs.core.Keyword(null,"desc","desc",1016984067),"Ruby: eval current buffer",new cljs.core.Keyword(null,"exec","exec",1017031683),lt.plugins.ruby.ruby_eval_buffer], null));
+
+lt.objs.command.command.call(null,new cljs.core.PersistentArrayMap(null, 3, [new cljs.core.Keyword(null,"command","command",1964298941),new cljs.core.Keyword(null,"ruby.clear-eval-results","ruby.clear-eval-results",3893404491),new cljs.core.Keyword(null,"desc","desc",1016984067),"Ruby: clear eval results",new cljs.core.Keyword(null,"exec","exec",1017031683),lt.plugins.ruby.ruby_clear_eval_results], null));
 
 }
 
