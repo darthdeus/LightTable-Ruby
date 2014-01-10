@@ -37,3 +37,7 @@ You can run the evaluation either by invoking the behavior directly via `Ctrl-Sp
   "ctrl-shift-l" [:ruby.clear-eval-results]
 }
 ```
+
+# Shameless self promotion
+
+The initial version of this plugin was developed by the awesome ninja hackers at [sensible.io](http://sensible.io)
