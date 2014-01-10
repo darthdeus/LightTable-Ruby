@@ -2,7 +2,7 @@
 
 This is a yet simple (but soon powerful) Ruby plugin for the [Light Table](http://lighttable.com/) editor.
 
-![screenshot](http://i.imgur.com/4L22fU5.png)
+![demo](http://i.imgur.com/pFtzOw3.gif)
 
 # Installation
 
