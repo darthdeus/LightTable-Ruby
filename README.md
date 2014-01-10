@@ -1,6 +1,6 @@
 # Ruby plugin for Light Table
 
-This is a yet simple (but soon powerful) Ruby plugin for the [Light Table](http://lighttable.com/) editor.
+This is a simple (but soon powerful) Ruby plugin for the [Light Table](http://lighttable.com/) editor.
 
 ![demo](http://i.imgur.com/pFtzOw3.gif)
 
