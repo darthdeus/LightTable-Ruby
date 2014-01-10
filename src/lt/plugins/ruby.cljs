@@ -23,13 +23,19 @@
 (defn current-buffer-content []
   "Returns content of the current buffer"
   (let [cm (editor/->cm-ed (pool/last-active))]
-    (.getRange cm #js {:line 0 :ch 0} #js {:line (.lineCount cm) :ch 0})))
+    (.getRange cm #js {:line 0 :ch 0} #js {:line (.lineCount (editor/->cm-ed (pool/last-active))) :ch 0})))
+
+(defn replace-buffer [string]
+  (when-let [ed (pool/last-active)]
+    (.replaceRange (editor/->cm-ed ed)
+                   string
+                   #js {:line 0 :ch 0}
+                   #js {:line (.lineCount (editor/->cm-ed (pool/last-active))) :ch 0})))
+
 
 (defn replace-ruby-contents [err stdout stderr]
   "Replaces content of the current buffer from an output of an external process"
-  (when-let [ed (pool/last-active)]
-    (js/CodeMirror.commands.selectAll (editor/->cm-ed ed))
-    (editor/replace-selection ed (str stdout stderr))))
+  (replace-buffer (str stdout stderr)))
 
 (defn current-file-name [] (-> @(pool/last-active) :info :path))
 
