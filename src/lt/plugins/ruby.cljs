@@ -39,24 +39,10 @@
 
 (defn current-file-name [] (-> @(pool/last-active) :info :path))
 
-(defn ruby-herp-derp []
-  (let [cm (editor/->cm-ed (pool/last-active))]
-    (.log js/console "ruby-herp-derp")
-    (.setLine cm 0 "herp derpity")))
-
 (defn eval-ruby-buffer []
   ((.log js/console "eval-ruby-buffer")
    (.exec (js/require "child_process") (str "xmpfilter " (current-file-name)) replace-ruby-contents)))
 
-(cmd/command {:command :herpderp-with-ruby
-              :desc "Ruby: herp derp all the things"
-              :exec ruby-herp-derp})
-
 (cmd/command {:command :eval-ruby-buffer
               :desc "Ruby: eval current buffer"
               :exec eval-ruby-buffer})
-
-
-;; (when-let [ed (pool/last-active)]
-;;   (js/CodeMirror.commands.selectAll (editor/->cm-ed ed))
-;;   (editor/replace-selection ed "your string"))

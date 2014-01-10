@@ -41,14 +41,8 @@ lt.plugins.ruby.replace_ruby_contents = (function replace_ruby_contents(err,stdo
 lt.plugins.ruby.current_file_name = (function current_file_name(){return new cljs.core.Keyword(null,"path","path",1017337751).cljs$core$IFn$_invoke$arity$1(new cljs.core.Keyword(null,"info","info",1017141280).cljs$core$IFn$_invoke$arity$1(cljs.core.deref.call(null,lt.objs.editor.pool.last_active.call(null))));
 });
 
-lt.plugins.ruby.ruby_herp_derp = (function ruby_herp_derp(){var cm = lt.objs.editor.__GT_cm_ed.call(null,lt.objs.editor.pool.last_active.call(null));console.log("ruby-herp-derp");
-return cm.setLine(0,"herp derpity");
-});
-
 lt.plugins.ruby.eval_ruby_buffer = (function eval_ruby_buffer(){return console.log("eval-ruby-buffer").call(null,require("child_process").exec([cljs.core.str("xmpfilter "),cljs.core.str(lt.plugins.ruby.current_file_name.call(null))].join(''),lt.plugins.ruby.replace_ruby_contents));
 });
-
-lt.objs.command.command.call(null,new cljs.core.PersistentArrayMap(null, 3, [new cljs.core.Keyword(null,"command","command",1964298941),new cljs.core.Keyword(null,"herpderp-with-ruby","herpderp-with-ruby",3082244320),new cljs.core.Keyword(null,"desc","desc",1016984067),"Ruby: herp derp all the things",new cljs.core.Keyword(null,"exec","exec",1017031683),lt.plugins.ruby.ruby_herp_derp], null));
 
 lt.objs.command.command.call(null,new cljs.core.PersistentArrayMap(null, 3, [new cljs.core.Keyword(null,"command","command",1964298941),new cljs.core.Keyword(null,"eval-ruby-buffer","eval-ruby-buffer",4261784404),new cljs.core.Keyword(null,"desc","desc",1016984067),"Ruby: eval current buffer",new cljs.core.Keyword(null,"exec","exec",1017031683),lt.plugins.ruby.eval_ruby_buffer], null));
 
