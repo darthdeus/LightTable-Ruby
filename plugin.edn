@@ -1,0 +1,5 @@
+{:name "Ruby"
+ :author "Jakub Arnold"
+ :souce "https://github.com/darthdeus/LightTable-Ruby"
+ :desc "Adds Ruby support to LightTable"
+ :behaviors "ruby.behaviors"}

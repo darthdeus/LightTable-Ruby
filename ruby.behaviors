@@ -1,0 +1,6 @@
+{:+ {:app [(:lt.objs.plugins/load-js ["codemirror/ruby.js", "ruby_compiled.js"])]
+     :editor.ruby []
+     :files [(:lt.objs.files/file-types
+              [{:name "Ruby" :exts [:rb] :mime "text/x-ruby" :tags [:editor.ruby]}]
+              )]
+     }}
