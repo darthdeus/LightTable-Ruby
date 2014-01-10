@@ -12,3 +12,6 @@ end
 
 a = Something.new
 a.with_a_method(1, 3.14159) # =>
+
+
+4 + 7 # =>
